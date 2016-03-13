@@ -78,6 +78,15 @@ void Loop::GenerateAndSort(int ElementsCount, int SortType, int SequenceType)
     case 2:
         SortedSequence->ShellSort(Sequence->Value, ElementsCount);
         break;
+    case 3:
+        SortedSequence->QuickSortRight(Sequence->Value, ElementsCount);
+        break;
+    case 4:
+        SortedSequence->QuickSortRandom(Sequence->Value, ElementsCount);
+        break;
+    case 5:
+        SortedSequence->HeapSort(Sequence->Value, ElementsCount);
+        break;
     default:
         break;
     }

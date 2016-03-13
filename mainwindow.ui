@@ -88,6 +88,21 @@
                 <string>Shell sort</string>
                </property>
               </item>
+              <item>
+               <property name="text">
+                <string>Quick sort [right]</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Quick sort [random]</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Heap sort</string>
+               </property>
+              </item>
              </widget>
             </item>
            </layout>
