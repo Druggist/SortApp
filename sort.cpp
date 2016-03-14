@@ -72,13 +72,19 @@ void Sort::ShellSort(int *Sequence, int Size)
 void Sort::QuickSortRight(int *Sequence, int Size)
 {
     FillArray(Sequence, Size);
+    Time = clock();
     QuickSort(0, Size-1, false);
+    Time = clock() - Time;
+    TimeInSec = (double)Time/CLOCKS_PER_SEC;
 }
 
 void Sort::QuickSortRandom(int *Sequence, int Size)
 {
     FillArray(Sequence, Size);
+    Time = clock();
     QuickSort(0, Size-1, true);
+    Time = clock() - Time;
+    TimeInSec = (double)Time/CLOCKS_PER_SEC;
 }
 
 void Sort::QuickSort(int Left, int Right, bool isRandom)
@@ -141,6 +147,7 @@ void Sort::BuildHeap(int Size)
 void Sort::HeapSort(int *Sequence, int Size)
 {
     FillArray(Sequence, Size);
+    Time = clock();
 
     double CurrentProgress = 100/Size;
     BuildHeap(Size);
@@ -152,6 +159,9 @@ void Sort::HeapSort(int *Sequence, int Size)
         RebuildHeap(0, i - 1);
         emit CurrentProgress_change(CurrentProgress);
     }
+
+    Time = clock() - Time;
+    TimeInSec = (double)Time/CLOCKS_PER_SEC;
 }
 
 void Sort::DeleteArray()
