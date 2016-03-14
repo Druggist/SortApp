@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <QDebug>
 
 Sort::Sort(QObject *parent) : QObject(parent)
 {
@@ -90,7 +91,7 @@ void Sort::QuickSortRandom(int *Sequence, int Size)
 void Sort::QuickSort(int Left, int Right, bool isRandom)
 {
     //TODO set current progress
- double CurrentProgress = 0;
+ double CurrentProgress = 100.0/Right;
  int i = Left;
  int j = Right;
  int x = (isRandom)?(Value[Left+(rand()%(Right-Left))]):(Value[Right]);
@@ -118,21 +119,24 @@ int Sort::Parent(int n)
 
 int Sort::LeftChild(int n)
 {
-    return (n != 0)?(2 * n):(1);
+    return (n != 0)?(2 * n + 1):(1);
 }
 
 int Sort::RightChild(int n)
 {
-    return (n != 0)?(2 * n + 1):(2);
+    return (n != 0)?(2 * n + 2):(2);
 }
 
 void Sort::RebuildHeap(int Element, int UnsortedSize)
 {
-    int BiggerElement = (LeftChild(Element) <= UnsortedSize && Value[LeftChild(Element)]>Value[Element])?(LeftChild(Element)):(Element);
-    if (RightChild(Element) <= UnsortedSize && Value[RightChild(Element)]>Value[Element]) BiggerElement = RightChild(Element);
+    int Child = LeftChild(Element);
+    int Temp = 0;
+    int BiggerElement = (Child <= UnsortedSize && Value[Child]>Value[Element])?(Child):(Element);
+    Child = RightChild(Element);
+    if (Child <= UnsortedSize && Value[Child]>Value[Element] && Value[BiggerElement] < Value[Child]) BiggerElement = Child;
 
     if(BiggerElement != Element){
-        int Temp = Value[BiggerElement];
+        Temp = Value[BiggerElement];
         Value[BiggerElement] = Value[Element];
         Value[Element] = Temp;
         RebuildHeap(BiggerElement, UnsortedSize);
@@ -149,9 +153,9 @@ void Sort::HeapSort(int *Sequence, int Size)
     FillArray(Sequence, Size);
     Time = clock();
 
-    double CurrentProgress = 100/Size;
-    BuildHeap(Size);
-    for(int i = Size; i>=0; i--)
+    double CurrentProgress = 100.0/Size;
+    BuildHeap(Size-1);
+    for(int i = Size-1; i>=0; i--)
     {
         int Temp = Value[0];
         Value[0] = Value[i];

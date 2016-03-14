@@ -55,7 +55,17 @@ void MainWindow::DrawChart(QVector<double> Elements, QVector<double> Time)
     case 2:
         Pen.setColor(QColor(100,100,255));
         break;
+    case 3:
+        Pen.setColor(QColor(255,255,100));
+        break;
+    case 4:
+        Pen.setColor(QColor(255,100,255));
+        break;
+    case 5:
+        Pen.setColor(QColor(100,255,255));
+        break;
     default:
+        Pen.setColor(QColor(0,0,0));
         break;
     }
     Chart->xAxis->setRange(0, Elements.last()+Elements.last()/20);
