@@ -1,3 +1,11 @@
-# SortApp
+# Sorting app
 
-App showing differences between various sort methods and visiualising it on a chart.
+Perfect visualizer of speed differences between popular sort methods:
+- selection sort
+- insertion sort
+- shell sort
+- quick sort
+- heap sort
+
+
+Made with Qt 5.0 & Qt custom plot
